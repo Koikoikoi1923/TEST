@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Pantera — B&B Canillas de Aceituno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #faf8f5;
+      --color-text: #1a1a1a;
+      --color-accent: #2d4a3e;
+      --color-accent-light: #3d6b5a;
+      --color-warm: #c4956a;
+      --color-warm-light: #e8d5c0;
+      --color-muted: #6b6b6b;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(196, 149, 106, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(45, 74, 62, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(232, 213, 192, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+
+    .logo-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--color-warm);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero .tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--color-muted);
+      max-width: 460px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 50px;
+      height: 1px;
+      background: var(--color-warm);
+      margin: 0 auto 3rem;
+    }
+
+    /* Email form */
+    .signup-form {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .signup-form p {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .form-row input[type="email"] {
+      flex: 1;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid #d4cfc8;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--color-text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-row input[type="email"]:focus {
+      border-color: var(--color-accent);
+    }
+
+    .form-row input[type="email"]::placeholder {
+      color: #aaa;
+    }
+
+    .form-row button {
+      padding: 0.85rem 1.6rem;
+      background: var(--color-accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .form-row button:hover {
+      background: var(--color-accent-light);
+    }
+
+    .form-message {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      min-height: 1.4em;
+    }
+
+    .form-message.success {
+      color: var(--color-accent);
+    }
+
+    .form-message.error {
+      color: #b44;
+    }
+
+    /* Location hint */
+    .location {
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      color: #b0a89e;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #b0a89e;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+      }
+
+      .form-row button {
+        padding: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="logo-icon" aria-hidden="true">&#127823;</span>
+      <h1>La Pantera</h1>
+      <p class="subtitle">Bed & Breakfast</p>
+      <p class="tagline">
+        Een plek om tot rust te komen in het hart van de Axarquía.
+        Canillas de Aceituno, Málaga.
+      </p>
+      <div class="divider"></div>
+
+      <!-- Mailchimp Signup Form -->
+      <div class="signup-form">
+        <p>Binnenkort openen wij onze deuren. Laat je e-mail achter en wij houden je op de hoogte.</p>
+
+        <form id="mc-form" action="" method="POST">
+          <div class="form-row">
+            <input
+              type="email"
+              name="EMAIL"
+              id="mc-email"
+              placeholder="Je e-mailadres"
+              required
+              autocomplete="email"
+            >
+            <button type="submit">Inschrijven</button>
+          </div>
+          <div class="form-message" id="mc-message" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <p class="location">Canillas de Aceituno &middot; Málaga &middot; España</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 La Pantera B&B
+  </footer>
+
+  <script>
+    /*
+     * MAILCHIMP INTEGRATIE
+     *
+     * Om dit formulier te koppelen aan Mailchimp:
+     *
+     * 1. Maak een Mailchimp account aan op https://mailchimp.com
+     * 2. Maak een Audience (lijst) aan
+     * 3. Ga naar Audience > Signup forms > Embedded forms
+     * 4. Kopieer de form action URL (ziet er zo uit):
+     *    https://xxxxx.us21.list-manage.com/subscribe/post?u=XXXXXX&id=XXXXXX
+     * 5. Vervang de ACTION_URL hieronder met jouw URL
+     * 6. Voeg '&f_id=XXXXXX' toe aan het einde als dat in je Mailchimp URL staat
+     *
+     * Voor AJAX (zonder page reload), gebruik de /post-json? variant:
+     *    Vervang /post? door /post-json? en voeg &c=callback toe
+     */
+
+    const MAILCHIMP_URL = ''; // <-- Plak hier je Mailchimp form action URL
+
+    const form = document.getElementById('mc-form');
+    const emailInput = document.getElementById('mc-email');
+    const message = document.getElementById('mc-message');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      if (!MAILCHIMP_URL) {
+        // Geen Mailchimp URL geconfigureerd — toon melding
+        message.textContent = 'Bedankt voor je interesse! We nemen snel contact op.';
+        message.className = 'form-message success';
+        emailInput.value = '';
+        return;
+      }
+
+      // JSONP request naar Mailchimp
+      const url = MAILCHIMP_URL.replace('/post?', '/post-json?') +
+        '&EMAIL=' + encodeURIComponent(email) +
+        '&c=mailchimpCallback';
+
+      // Verwijder eerdere callback
+      if (window.mailchimpCallback) {
+        delete window.mailchimpCallback;
+      }
+
+      window.mailchimpCallback = function (response) {
+        if (response.result === 'success') {
+          message.textContent = '¡Perfecto! Je bent ingeschreven. We houden je op de hoogte.';
+          message.className = 'form-message success';
+          emailInput.value = '';
+        } else {
+          let msg = response.msg || 'Er ging iets mis. Probeer het opnieuw.';
+          // Strip Mailchimp error prefix
+          if (msg.indexOf(' - ') > -1) {
+            msg = msg.split(' - ').slice(1).join(' - ');
+          }
+          message.textContent = msg;
+          message.className = 'form-message error';
+        }
+        // Cleanup script tag
+        const s = document.getElementById('mc-script');
+        if (s) s.remove();
+      };
+
+      const script = document.createElement('script');
+      script.id = 'mc-script';
+      script.src = url;
+      document.body.appendChild(script);
+    });
+  </script>
+
+</body>
+</html>
