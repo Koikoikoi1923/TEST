@@ -1,333 +1,281 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Pantera — B&B Canillas de Aceituno</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Eenvoudige, complete one-page website met klikbare navigatie, contactmogelijkheden en 5 SEO-blogartikelen.">
+  <title>La Pantera | Rustige B&B in Canillas de Aceituno</title>
   <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
-      --color-bg: #faf8f5;
-      --color-text: #1a1a1a;
-      --color-accent: #2d4a3e;
-      --color-accent-light: #3d6b5a;
-      --color-warm: #c4956a;
-      --color-warm-light: #e8d5c0;
-      --color-muted: #6b6b6b;
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --text: #1e1e1e;
+      --muted: #676767;
+      --brand: #2f5c4b;
+      --brand-hover: #254a3c;
+      --line: #e7dfd5;
+      --radius: 12px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
+    .container {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 0 1rem;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
+    header {
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(196, 149, 106, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(45, 74, 62, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(232, 213, 192, 0.15) 0%, transparent 50%);
-      pointer-events: none;
+      z-index: 20;
+      background: rgba(247, 244, 239, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(4px);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      gap: 1rem;
     }
 
-    .logo-icon {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      display: block;
+    .brand {
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
     }
+
+    .menu {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .menu a:hover { color: var(--brand); }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1, h2, h3 { line-height: 1.25; }
 
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.8rem;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
     }
 
-    .hero .subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--color-warm);
-      margin-bottom: 2rem;
-      font-weight: 400;
+    .hero p {
+      max-width: 65ch;
+      color: var(--muted);
+      margin: 0 0 1.4rem;
     }
 
-    .hero .tagline {
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--color-muted);
-      max-width: 460px;
-      margin: 0 auto 3rem;
-      line-height: 1.7;
-    }
-
-    .divider {
-      width: 50px;
-      height: 1px;
-      background: var(--color-warm);
-      margin: 0 auto 3rem;
-    }
-
-    /* Email form */
-    .signup-form {
-      width: 100%;
-      max-width: 440px;
-      margin: 0 auto;
-    }
-
-    .signup-form p {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
-
-    .form-row {
+    .buttons {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.7rem;
+      flex-wrap: wrap;
     }
 
-    .form-row input[type="email"] {
-      flex: 1;
-      padding: 0.85rem 1.1rem;
-      border: 1px solid #d4cfc8;
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      background: #fff;
-      color: var(--color-text);
-      outline: none;
-      transition: border-color 0.2s;
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--brand);
+      color: var(--brand);
+      background: transparent;
     }
 
-    .form-row input[type="email"]:focus {
-      border-color: var(--color-accent);
-    }
-
-    .form-row input[type="email"]::placeholder {
-      color: #aaa;
-    }
-
-    .form-row button {
-      padding: 0.85rem 1.6rem;
-      background: var(--color-accent);
+    .btn.primary {
+      background: var(--brand);
       color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      white-space: nowrap;
     }
 
-    .form-row button:hover {
-      background: var(--color-accent-light);
+    .btn:hover {
+      background: var(--brand-hover);
+      color: #fff;
+      border-color: var(--brand-hover);
     }
 
-    .form-message {
-      margin-top: 0.75rem;
-      font-size: 0.85rem;
-      min-height: 1.4em;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
     }
 
-    .form-message.success {
-      color: var(--color-accent);
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
     }
 
-    .form-message.error {
-      color: #b44;
+    .muted { color: var(--muted); }
+
+    .contact-list {
+      display: grid;
+      gap: 0.65rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
 
-    /* Location hint */
-    .location {
-      margin-top: 4rem;
-      font-size: 0.8rem;
-      color: #b0a89e;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
+    .contact-list a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    /* Footer */
+    .contact-list a:hover { text-decoration: underline; }
+
+    article h3 { margin-top: 0; }
+
     footer {
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
       text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      color: #b0a89e;
-    }
-
-    @media (max-width: 480px) {
-      .form-row {
-        flex-direction: column;
-      }
-
-      .form-row button {
-        padding: 0.9rem;
-      }
     }
   </style>
 </head>
 <body>
-
-  <section class="hero">
-    <div class="hero-content">
-      <span class="logo-icon" aria-hidden="true">&#127823;</span>
-      <h1>La Pantera</h1>
-      <p class="subtitle">Bed & Breakfast</p>
-      <p class="tagline">
-        Een plek om tot rust te komen in het hart van de Axarquía.
-        Canillas de Aceituno, Málaga.
-      </p>
-      <div class="divider"></div>
-
-      <!-- Mailchimp Signup Form -->
-      <div class="signup-form">
-        <p>Binnenkort openen wij onze deuren. Laat je e-mail achter en wij houden je op de hoogte.</p>
-
-        <form id="mc-form" action="" method="POST">
-          <div class="form-row">
-            <input
-              type="email"
-              name="EMAIL"
-              id="mc-email"
-              placeholder="Je e-mailadres"
-              required
-              autocomplete="email"
-            >
-            <button type="submit">Inschrijven</button>
-          </div>
-          <div class="form-message" id="mc-message" aria-live="polite"></div>
-        </form>
-      </div>
-
-      <p class="location">Canillas de Aceituno &middot; Málaga &middot; España</p>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#home">La Pantera B&B</a>
+        <div class="menu">
+          <a href="#home">Home</a>
+          <a href="#kamers">Kamers</a>
+          <a href="#omgeving">Omgeving</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
-  </section>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Een simpele, complete website voor jouw B&B</h1>
+        <p>
+          Welkom bij <strong>La Pantera</strong> in Canillas de Aceituno, Málaga. Deze one-page site is klaar voor gebruik,
+          mobiel vriendelijk en alle belangrijke knoppen zijn direct klikbaar.
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="#contact">Direct reserveren</a>
+          <a class="btn" href="tel:+31612345678">Bel ons</a>
+          <a class="btn" href="mailto:info@lapantera.es">E-mail</a>
+          <a class="btn" href="https://wa.me/31612345678" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="kamers">
+      <div class="container">
+        <h2>Kamers & prijzen</h2>
+        <p class="muted">Duidelijke keuzes voor gasten die rust, natuur en comfort zoeken.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Standaard Kamer</h3>
+            <p>Vanaf €85 per nacht, inclusief ontbijt en gratis wifi.</p>
+            <a class="btn" href="#contact">Boek deze kamer</a>
+          </div>
+          <div class="card">
+            <h3>Deluxe Kamer</h3>
+            <p>Vanaf €110 per nacht, met balkon en uitzicht op de bergen.</p>
+            <a class="btn" href="#contact">Boek deze kamer</a>
+          </div>
+          <div class="card">
+            <h3>Lang Verblijf</h3>
+            <p>Vanaf 7 nachten met korting. Ideaal voor remote werken.</p>
+            <a class="btn" href="#contact">Vraag offerte aan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="omgeving">
+      <div class="container">
+        <h2>Omgeving & activiteiten</h2>
+        <div class="grid">
+          <div class="card"><strong>Wandelen</strong><p>Direct toegang tot bergpaden en natuur.</p></div>
+          <div class="card"><strong>Culinair</strong><p>Lokale restaurants met Andalusische specialiteiten.</p></div>
+          <div class="card"><strong>Dagtrips</strong><p>Binnen 1 uur ben je in Málaga of aan de kust.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <h2>Blog (5 SEO-artikelen)</h2>
+        <p class="muted">Klaar voor zoekmachines: duidelijke titels, relevante zoekwoorden en praktische informatie.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>1. Wat te doen in Canillas de Aceituno: complete gids</h3>
+            <p>Ontdek de mooiste wandelroutes, lokale markten en verborgen plekken in het dorp.</p>
+            <a class="btn" href="#contact">Lees meer / reserveer verblijf</a>
+          </article>
+          <article class="card">
+            <h3>2. Beste reistijd voor Málaga en de Axarquía</h3>
+            <p>Wanneer je het beste kunt reizen voor zon, natuur en rustige periodes.</p>
+            <a class="btn" href="#contact">Plan je verblijf</a>
+          </article>
+          <article class="card">
+            <h3>3. Waarom een B&B in Andalusië perfect is voor rustzoekers</h3>
+            <p>Vergelijk een kleinschalige B&B met hotels en ontdek de voordelen van persoonlijke service.</p>
+            <a class="btn" href="#contact">Boek direct</a>
+          </article>
+          <article class="card">
+            <h3>4. Remote werken vanuit Zuid-Spanje: tips en wifi-proof verblijf</h3>
+            <p>Praktische tips voor digitale nomaden: internet, ritme, productiviteit en ontspanning.</p>
+            <a class="btn" href="#contact">Vraag naar lang verblijf</a>
+          </article>
+          <article class="card">
+            <h3>5. Weekend weg in Málaga provincie: itinerary van 3 dagen</h3>
+            <p>Een concreet schema met activiteiten, eten en overnachten in een rustige omgeving.</p>
+            <a class="btn" href="#contact">Ontvang het reisschema</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact (alles klikbaar)</h2>
+        <ul class="contact-list">
+          <li>Telefoon: <a href="tel:+31612345678">+31 6 12 34 56 78</a></li>
+          <li>E-mail: <a href="mailto:info@lapantera.es">info@lapantera.es</a></li>
+          <li>WhatsApp: <a href="https://wa.me/31612345678" target="_blank" rel="noopener">Start chat</a></li>
+          <li>Google Maps: <a href="https://maps.google.com/?q=Canillas+de+Aceituno" target="_blank" rel="noopener">Open route</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2026 La Pantera B&B
+    © 2026 La Pantera B&B · Eén pagina · Snel, duidelijk en klaar om live te zetten.
   </footer>
-
-  <script>
-    /*
-     * MAILCHIMP INTEGRATIE
-     *
-     * Om dit formulier te koppelen aan Mailchimp:
-     *
-     * 1. Maak een Mailchimp account aan op https://mailchimp.com
-     * 2. Maak een Audience (lijst) aan
-     * 3. Ga naar Audience > Signup forms > Embedded forms
-     * 4. Kopieer de form action URL (ziet er zo uit):
-     *    https://xxxxx.us21.list-manage.com/subscribe/post?u=XXXXXX&id=XXXXXX
-     * 5. Vervang de ACTION_URL hieronder met jouw URL
-     * 6. Voeg '&f_id=XXXXXX' toe aan het einde als dat in je Mailchimp URL staat
-     *
-     * Voor AJAX (zonder page reload), gebruik de /post-json? variant:
-     *    Vervang /post? door /post-json? en voeg &c=callback toe
-     */
-
-    const MAILCHIMP_URL = ''; // <-- Plak hier je Mailchimp form action URL
-
-    const form = document.getElementById('mc-form');
-    const emailInput = document.getElementById('mc-email');
-    const message = document.getElementById('mc-message');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const email = emailInput.value.trim();
-      if (!email) return;
-
-      if (!MAILCHIMP_URL) {
-        // Geen Mailchimp URL geconfigureerd — toon melding
-        message.textContent = 'Bedankt voor je interesse! We nemen snel contact op.';
-        message.className = 'form-message success';
-        emailInput.value = '';
-        return;
-      }
-
-      // JSONP request naar Mailchimp
-      const url = MAILCHIMP_URL.replace('/post?', '/post-json?') +
-        '&EMAIL=' + encodeURIComponent(email) +
-        '&c=mailchimpCallback';
-
-      // Verwijder eerdere callback
-      if (window.mailchimpCallback) {
-        delete window.mailchimpCallback;
-      }
-
-      window.mailchimpCallback = function (response) {
-        if (response.result === 'success') {
-          message.textContent = '¡Perfecto! Je bent ingeschreven. We houden je op de hoogte.';
-          message.className = 'form-message success';
-          emailInput.value = '';
-        } else {
-          let msg = response.msg || 'Er ging iets mis. Probeer het opnieuw.';
-          // Strip Mailchimp error prefix
-          if (msg.indexOf(' - ') > -1) {
-            msg = msg.split(' - ').slice(1).join(' - ');
-          }
-          message.textContent = msg;
-          message.className = 'form-message error';
-        }
-        // Cleanup script tag
-        const s = document.getElementById('mc-script');
-        if (s) s.remove();
-      };
-
-      const script = document.createElement('script');
-      script.id = 'mc-script';
-      script.src = url;
-      document.body.appendChild(script);
-    });
-  </script>
-
 </body>
 </html>
